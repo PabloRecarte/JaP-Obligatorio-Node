@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <title>eMercado - Todo lo que busques está aquí</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/dropzone.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="site-header sticky-top py-1 bg-dark">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+      <a class="py-2 d-none d-md-inline-block" href="index.html"><i class="fas fa-home"></i> Inicio</a>
+      <a class="py-2 d-none d-md-inline-block" href="categories.html"><i class="fas fa-sitemap"></i> Categorías</a>
+      <a class="py-2 d-none d-md-inline-block" href="products.html"><i class="fas fa-stream"></i> Productos</a>
+      <a class="py-2 d-none d-md-inline-block" href="sell.html"><i class="fas fa-dollar-sign"></i> Vender</a>
+      <div class="dropdown">
+        <a class="py-2 d-none d-md-inline-block dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-user-circle"></i> <span class="usuario-carrito"></span></a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="cart.html"><i class="fas fa-shopping-cart"></i> Mi carrito</a>
+          <a class="dropdown-item" href="my-profile.html"><i class="far fa-address-card"></i> Mi perfil</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item logout" href="#"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main role="main" class="pb-5">
+    <div class="text-center p-4">
+        <h2>Mi Perfil</h2>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Mis Datos</a>
+            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Actualizar</a>
+            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Editar Imagen</a>
+            <!-- <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a> -->
+          </div>
+        </div>
+        <div class="col">
+          <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+              <div class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <h4 class="mb-1">Mis Datos</h4>
+                    <form>
+                      <div class="form-group row">
+                        <label for="nombre-rd" class="col-sm-2 col-form-label">Nombres</label>
+                        <div class="col-sm">
+                          <input type="text" class="form-control-plaintext" id="nombres-rd" readonly>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="apellido-rd" class="col-sm-2 col-form-label">Apellidos</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control-plaintext" id="apellidos-rd" readonly>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="email-rd" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-8">
+                          <input type="email" class="form-control-plaintext" id="email-rd" readonly>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="edad-rd" class="col-sm-2 col-form-label">Edad</label>
+                        <div class="col-sm-8">
+                          <input type="number" min="0" class="form-control-plaintext" id="edad-rd" readonly>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="telefono-rd" class="col-sm-2 col-form-label">Teléfono</label>
+                        <div class="col-sm-8">
+                          <input type="tel" class="form-control-plaintext" id="telefono-rd" readonly>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="imagen-rd" class="col-sm-2 col-form-label">Imagen</label>
+                        <div class="col-sm-8">
+                          <img style="max-width: 300px; max-height: 300px;" id="imagen-rd" src="img/emptyAvatar.png" alt="Imagen de usuario">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+              <div class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <h4 class="mb-1">Mis Datos</h4>
+                    <form onsubmit="return guardarDatos()">
+                      <div class="form-group row">
+                        <label for="nombres-wr" class="col-sm-2 col-form-label">Nombres</label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" id="nombres-wr" placeholder="Nombres">
+                        </div>
+                        <label for="apellidos-wr" class="col-sm-2 col-form-label">Apellidos</label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" id="apellidos-wr" placeholder="Apellidos">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="email-wr" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-4">
+                          <input type="email" class="form-control" id="email-wr" placeholder="Email">
+                        </div>
+                        <label for="edad-wr" class="col-sm-2 col-form-label">Edad</label>
+                        <div class="col-sm">
+                          <input type="number" min="0" class="form-control" id="edad-wr" placeholder="Edad">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="telefono-wr" class="col-sm-2 col-form-label">Teléfono</label>
+                        <div class="col-sm-4">
+                          <input type="tel" class="form-control" id="telefono-wr" placeholder="Teléfono">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-2">Confirmar</div>
+                        <div class="col-sm-10">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="confirmarCambios">
+                            <label class="form-check-label" for="confirmarCambios">
+                              Confirmar cambios
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-primary">Actualizar</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+              <div class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <h4 class="mb-1">Editar Imagen</h4>
+                    <form onsubmit="return guardarImagenUsandoCanvas()">
+                      <div style="margin-top: 10px;" class="form-group row">
+                        <label for="imagen-wr" class="col-sm-2 col-form-label">Subir Imagen</label>
+                        <div class="col-sm">
+                          <input type="file" id="imagen-wr">
+                        </div>
+                      </div>
+                      <label for="imagen-rd1" class="col-sm-2 col-form-label">Previsualización</label>
+                      <div class="col-sm-4">
+                        <img style="max-width: 300px; max-height: 300px;" id="imagen-prev" src="img/emptyAvatar.png" alt="Imagen de perfil">
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-2">Confirmar</div>
+                        <div class="col-sm-10">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="confirmarImagen">
+                            <label class="form-check-label" for="confirmarImagen">
+                              Confirmar cambios
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-3">
+                          <button type="submit" class="btn btn-primary">Actualizar</button>
+                        </div>
+                        <div class="col-sm">
+                          <button id="quitarImagen" class="btn btn-danger" type="button">Quitar imagen</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="text-muted bg-light">
+    <div class="container">
+      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
+  <div class="alert fade alert-success" role="alert" id="alertResult">
+    <span id="resultSpan"></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/dropzone.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/my-profile.js"></script>
+</body>
+
+</html>

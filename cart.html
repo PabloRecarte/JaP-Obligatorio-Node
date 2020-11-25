@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <title>eMercado - Todo lo que busques está aquí</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="css/cart.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/dropzone.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="site-header sticky-top py-1 bg-dark">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+      <a class="py-2 d-none d-md-inline-block" href="index.html"><i class="fas fa-home"></i> Inicio</a>
+      <a class="py-2 d-none d-md-inline-block" href="categories.html"><i class="fas fa-sitemap"></i> Categorías</a>
+      <a class="py-2 d-none d-md-inline-block" href="products.html"><i class="fas fa-stream"></i> Productos</a>
+      <a class="py-2 d-none d-md-inline-block" href="sell.html"><i class="fas fa-dollar-sign"></i> Vender</a>
+      <div class="dropdown">
+        <a class="py-2 d-none d-md-inline-block dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-user-circle"></i> <span class="usuario-carrito"></span></a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="cart.html"><i class="fas fa-shopping-cart"></i> Mi carrito</a>
+          <a class="dropdown-item" href="my-profile.html"><i class="far fa-address-card"></i> Mi perfil</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item logout" href="#"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main role="main" class="pb-5">
+    <div class="text-center p-4">
+        <h2>Mi Carrito</h2>
+    </div>
+    <form method="POST" action="http://localhost:3000/creararchivo" onsubmit="return comprarValidacion()">
+      <div class="container">
+        <div class="row">
+          
+          <div class="col-9">
+            <div class="list-group" id="cart-list-container"></div>
+            <div class="col-6" id="cart-container">
+              <div>
+                <div class="list-group-item list-group-item-action">
+                  <h4 class="mb-1">Resumen</h4>
+                  <table class="table table-borderless table-sm">
+                    <tbody>
+                      <tr>
+                        <th scope="row">Unidades:</th>
+                        <td><span id="totalUnidades"></span> unidades</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Subtotal:</th>
+                        <td>UYU <span id="subtotal"></span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Costo envío:</th>
+                        <td>UYU <span id="costoEnvio"></span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Total:</th>
+                        <td>UYU <span id="total"></span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- <form onsubmit="return comprarValidacion()"> -->
+                    <button type="submit" class="btn btn-primary">Comprar</button>
+                  <!-- </form> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="row">
+              <div id="cart-dataenvio-container">
+                <div>
+                  <div class="list-group-item list-group-item-action">
+                    <div class="row">
+                      <div class="col">
+                        <h4 class="mb-1">Envío</h4>
+                        <input id="calle" type="text" class="form-control" placeholder="Calle" value="">
+                        <div class="row">
+                          <div class="col">
+                            <input id="numeropuerta" type="number" class="form-control" placeholder="Nº" value="">
+                          </div>
+                          <div class="col">
+                            <input id="esquina" type="text" class="form-control" placeholder="Esquina" value="">
+                          </div>
+                        </div>
+                        <input id="pais" type="text" class="form-control" placeholder="País" value="">
+                        <select class="custom-select d-block w-100" id="metodoEnvio">
+                          <option disabled selected value="0">Tipo de envío</option>
+                          <option value="15">Premium</option>
+                          <option value="7">Express</option>
+                          <option value="5">Standard</option>
+                        </select>
+                        <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#modalTiposEnvio">Ver tipos de envío</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div id="cart-datapago-container">
+                <div>
+                  <div class="list-group-item list-group-item-action">
+                    <div class="row">
+                      <div class="col">
+                        <h4 class="mb-1">Pago</h4>
+                        <div class="d-block my-3">
+                          <div class="custom-control custom-radio">
+                            <input id="tarjeta" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
+                            <label class="custom-control-label" for="tarjeta">Tarjeta de crédito</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                            <input id="transferencia" name="publicationType" type="radio" class="custom-control-input" required="">
+                            <label class="custom-control-label" for="transferencia">Transferencia bancaria</label>
+                          </div>
+                        </div>
+                        <select class="custom-select d-block w-100" id="selectorTarjeta">
+                          <option disabled selected value="">Seleccionar tarjeta</option>
+                        </select>
+                        <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#modalTarjeta">Agregar tarjeta</button>
+                        <select class="custom-select d-block w-100" id="selectorDatosCuenta">
+                        <option disabled selected value="">Datos cuenta bancaria</option>
+                          <option disabled value="">Nombre: eMercado JAP 2020</option>
+                          <option disabled value="">Número: 1111-2222-3333-4444</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalTiposEnvio">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tipos de envío</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <h5 class="text-warning">Premium (15%)</h5>
+                    <p class="muted text-justify">Al contratar envío Premium, te aseguras recibir tus productos, ¡en los siguientes 4 días!</p>
+                </div>
+                <hr>
+                <div class="row">
+                    <h5 class="text-primary">Express (7%)</h5>
+                    <p class="muted text-justify">Adquiriendo la modalidad de envío Express, recibirás tu pedido entre 5 y 8 días luego de realizar la compra.</p>
+                </div>
+                <hr>
+                <div class="row">
+                    <h5 class="text-secondary">Standard (5%)</h5>
+                    <p class="muted text-justify">Con el envío Standar, recibirás tu compra entre 12 y 15 días luego de efectuada..</p>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalTarjeta">
+      <div style="max-width: 800px;" class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Nueva tarjeta</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <form onsubmit="return agregarTarjeta()" id="formNuevaTarjeta">
+                <div class="row">
+                  <div class="col-50">
+                    <h3>Datos</h3>
+                    <div class="row">
+                      <div class="col-50">
+                        <p><i class="fa fa-user"></i> Titular
+                          <input type="text" id="fname" name="firstname" required placeholder="Juan Perez"></p>
+                      </div>
+                      <div class="col-50">
+                        <p><label for="temail"><i class="fa fa-envelope"></i> Email</label>
+                          <input type="text" id="temail" name="temail" placeholder="jperez@example.com"></p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-50">
+                        <p><label for="cardnumber"><i class="far fa-credit-card"></i> Número de tarjeta</label>
+                          <input type="text" id="cardnumber" name="cardnumber" required placeholder="1111-2222-3333-4444"></p>
+                      </div>
+                      <div class="col-50">
+                        <p><label for="cvv">CVV</label>
+                          <input type="password" id="cvv" required name="cvv" placeholder="111"></p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-50">
+                        <p><label for="mesExp">Expiración: Mes</label>
+                          <select required name="mesExp" id="mesExp">
+                            <option disabled selected value="">--</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select></p>
+                      </div>
+                      <div class="col-50">
+                        <p><label for="anioExp">Año</label>
+                          <select required name="anioExp" id="anioExp">
+                            <option disabled selected value="">--</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                          </select></p>
+                      </div>
+                    </div>        
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar tarjeta</button>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
+  <div id="spinner-wrapper">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/dropzone.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+
+</html>

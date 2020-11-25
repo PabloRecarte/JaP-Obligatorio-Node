@@ -1,0 +1,45 @@
+/* body{
+    background-image: radial-gradient( circle farthest-corner at -5.7% -16.7%,  rgb(43, 155, 62) 0%, rgba(48, 182, 21, 0.514) 90% );
+} */
+
+
+nav, .dropdown-item {background-image: linear-gradient(to right,black 0%,green  51%, green  100%)}
+nav, .dropdown-item {
+   margin: 10px;
+   padding: 15px 45px;
+   text-align: center;
+   /* text-transform: uppercase; */
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   display: block;
+ }
+
+ nav:hover, .dropdown-item:hover {
+   background-position: right center;
+   color: #fff;
+   text-decoration: none;
+ }
+
+
+.btn-grad {background-image: linear-gradient(to right, #F09819 0%, #EDDE5D  51%, #F09819  100%)}
+.btn-grad {
+   margin: 10px;
+   padding: 15px 45px;
+   /* text-align: center; */
+   /* text-transform: uppercase; */
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   display: block;
+ }
+
+.list-group-item:hover {
+   background-position: right center;
+   color: #fff;
+   text-decoration: none;
+ }

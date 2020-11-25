@@ -1,0 +1,33 @@
+
+
+img{
+    border:none;
+    /* height: 150px; */
+}
+ul,li{
+	margin:0;
+	padding:0;
+}
+li{
+	list-style:none;
+	float:left;
+	display:inline;
+	margin-right:10px;
+}
+
+
+#preview{
+	position:absolute;
+	border:1px solid #ccc;
+	background:#333;
+	padding:5px;
+	display:none;
+	color:#fff;
+  }
+  
+  .usercomment{
+    font-weight: bold;
+  }
+    /*  */
+
+	
