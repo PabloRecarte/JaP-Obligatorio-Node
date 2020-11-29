@@ -259,7 +259,7 @@ function comprarValidacion(){
 }
 
 function resumenCompra(){
-    let resumen = "";
+    let resumen = [];
     let articulos = document.getElementsByClassName("producto");
     let unidades;
     let precio;
@@ -270,42 +270,28 @@ function resumenCompra(){
         moneda = articulos[i].getElementsByClassName("moneda")[0].textContent
         unidades = Number.parseInt(articulos[i].getElementsByClassName("cantidad")[0].value);
         precio = Number.parseFloat(articulos[i].getElementsByClassName("precio")[0].textContent);
-        resumen += `
-        Producto: ` + nombreProducto + `
-        Precio: ` + moneda + ` ` + precio + `
-        Unidades: ` + unidades + `
-        Subtotal producto: ` + moneda + ` ` + precio*unidades + `
-        `;
+        resumen.push("Producto: " + nombreProducto);
+        resumen.push("Precio: " + moneda + ` ` + precio);
+        resumen.push("Unidades: " + unidades);
+        resumen.push("Subtotal producto: " + moneda + ` ` + precio*unidades);
+        resumen.push("");
     }
     let unidadesTotal = document.getElementById("totalUnidades").textContent;
     let subtotalTotal = document.getElementById("subtotal").textContent;
     let costoenvioTotal = document.getElementById("costoEnvio").textContent;
     let totalTotal = document.getElementById("total").textContent;
+    
+    resumen.push("----------: ");
+    resumen.push("");
+    resumen.push("Resumen compra: ");
+    resumen.push("");
+    resumen.push("Unidades: " + unidadesTotal);
+    resumen.push("Subtotal: UYU " + subtotalTotal);
+    resumen.push("Costo Envio: UYU " + costoenvioTotal);
+    resumen.push("Total: UYU " + totalTotal);
 
-    resumen += `
-    ----------
-    Resumen compra:
-
-    Unidades: ` + unidadesTotal + `
-    Subtotal: UYU ` + subtotalTotal + `
-    Costo Envio: UYU ` + costoenvioTotal + `
-    Total: UYU ` + totalTotal + `
-    `
     return resumen
 }
-
-// function resumenCompra(){
-//     let resumen = "";
-//     let articulos = document.getElementsByClassName("producto");
-//     console.log(articulos);
-//     for (let i = 0; i < articulos.length; i++){
-//         console.log(articulos[i]);
-//         let artic = articulos[i];
-//         console.log(artic.getElementsByClassName("subtotalProdAmbasMonedas"))
-//     }
-//     // console.log(resumen);
-//     return resumen
-// }
 
 
 

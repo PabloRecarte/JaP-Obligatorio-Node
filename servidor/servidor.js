@@ -61,19 +61,41 @@ app.get("*", (req, res) => {
 
 app.post("/creararchivo", (req, res) => {
     var fechaActual = actualDate();
-    let lastringify = JSON.stringify(req.body.data);
+    // let lastringify = JSON.stringify(req.body.data);
+    let datos = req.body.data;
+    console.log(req.body);
+    console.log(datos);
     console.log(fechaActual);
-    console.log(lastringify);
-    fs.writeFile("./compras/" + fechaActual, "Hey there! " + lastringify, function(err) {
-        if(err) {
-            return console.log(err);
-        }
-        console.log("The file was saved!");
-        console.log(typeof lastringify, lastringify);
-        res.json({
-            success: true
-        })
-    });
+    // console.log(lastringify);
+    // fs.writeFile("./compras/" + fechaActual, "Hey there! " + lastringify, function(err) {
+    //     if(err) {
+    //         return console.log(err);
+    //     }
+    //     console.log("The file was saved!");
+    //     console.log(typeof lastringify, lastringify);
+    //     res.json({
+    //         success: true
+    //     })
+    // });
+    let elArchivo = fs.createWriteStream("./compras/" + fechaActual, {
+        flags: 'a' //flags: 'a' preserved old data
+    })
+    console.log('largo datos' + datos.length);
+    console.log('datos first element' + datos[0]);
+
+    for(let i = 0; i < datos.length; i++){
+        elArchivo.write(datos[i]+'\r\n');
+    }
+
+    // elArchivo.write("hola1"+'\r\n');
+    // elArchivo.write('\r\n');
+    // elArchivo.write("dame bol2a"+'\r\n');
+    // elArchivo.write("dame bol2a"+"\r\n");
+
+    // fs.appendFile("./compras/" + fechaActual, ' This is my text.', function (err) {
+    //     if (err) throw err;
+    //     console.log('Updated!');
+    //   });
 });
 
 app.listen(3000, () => {
