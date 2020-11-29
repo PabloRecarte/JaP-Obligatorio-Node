@@ -78,8 +78,8 @@ function showProductsList(){
         </div>
         `
 
-        document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
     }
+    document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
 }
 
 // indica que moestrar e invoca la funcion que muestra
