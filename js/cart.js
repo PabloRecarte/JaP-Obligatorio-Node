@@ -27,7 +27,7 @@ function showCartElementsList(){
                             </div>
                         </div>
                         <p>Cantidad: <input class="cantidad" type="number" min="0" value=`+ element.count +`></p>
-                        <p>Subtotal: <span class="moneda">` + element.currency +`</span> <span class="subtotalProd"></span> <span class="uyus"></span></p>
+                        <p class="subtotalProdAmbasMonedas">Subtotal: <span class="moneda">` + element.currency +`</span> <span class="subtotalProd"></span> <span class="uyus"></span></p>
                     </div>
                 </div>
             </div>
@@ -88,6 +88,8 @@ function actualizarSubtotales(){
         costoEnvioELEM.innerHTML = "--";
         totalELEM.innerHTML = "--";
     }
+
+    resumenCompra();
 }
 
 // agrega eventos para actualizar en variaciones de cantidad y costo de envio
@@ -230,7 +232,20 @@ function comprarValidacion(){
     }
     alert("Compra realizada, ¡muchas gracias!");
     console.log("va a hacer fetch de creararchivo")
-    return fetch(CREAR_ARCHIVO)
+    return fetch(CREAR_ARCHIVO, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            // user: {
+            //     name: "John",
+            //     email: "john@example.com",
+            //     total: document.getElementById("total").textContent
+            // }
+            data: resumenCompra()
+        })
+    })
     .then(response => {
         console.log("aca en la response")
         if (response.ok) {
@@ -240,9 +255,58 @@ function comprarValidacion(){
             console.log("aca en la response todo mal")
           throw Error(response.statusText);
         }
-      })
-    return true;
+      });
 }
+
+function resumenCompra(){
+    let resumen = "";
+    let articulos = document.getElementsByClassName("producto");
+    let unidades;
+    let precio;
+    let moneda;
+    let nombreProducto;
+    for (let i = 0; i < articulos.length; i++){
+        nombreProducto = articulos[i].getElementsByClassName("prodname")[0].textContent;
+        moneda = articulos[i].getElementsByClassName("moneda")[0].textContent
+        unidades = Number.parseInt(articulos[i].getElementsByClassName("cantidad")[0].value);
+        precio = Number.parseFloat(articulos[i].getElementsByClassName("precio")[0].textContent);
+        resumen += `
+        Producto: ` + nombreProducto + `
+        Precio: ` + moneda + ` ` + precio + `
+        Unidades: ` + unidades + `
+        Subtotal producto: ` + moneda + ` ` + precio*unidades + `
+        `;
+    }
+    let unidadesTotal = document.getElementById("totalUnidades").textContent;
+    let subtotalTotal = document.getElementById("subtotal").textContent;
+    let costoenvioTotal = document.getElementById("costoEnvio").textContent;
+    let totalTotal = document.getElementById("total").textContent;
+
+    resumen += `
+    ----------
+    Resumen compra:
+
+    Unidades: ` + unidadesTotal + `
+    Subtotal: UYU ` + subtotalTotal + `
+    Costo Envio: UYU ` + costoenvioTotal + `
+    Total: UYU ` + totalTotal + `
+    `
+    return resumen
+}
+
+// function resumenCompra(){
+//     let resumen = "";
+//     let articulos = document.getElementsByClassName("producto");
+//     console.log(articulos);
+//     for (let i = 0; i < articulos.length; i++){
+//         console.log(articulos[i]);
+//         let artic = articulos[i];
+//         console.log(artic.getElementsByClassName("subtotalProdAmbasMonedas"))
+//     }
+//     // console.log(resumen);
+//     return resumen
+// }
+
 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de

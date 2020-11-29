@@ -1,6 +1,9 @@
+const bodyParser = require('body-parser');
 var express = require('express');
 const fs = require('fs');
 var app = express();
+
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     res.json({
@@ -22,29 +25,51 @@ const pedidos = {
 }
 
 app.get("*", (req, res) => {
-    fs.readFile(pedidos[req.originalUrl], function(err, data){
-        if(err) {
+    if (req.originalUrl != "/creararchivo"){
+        fs.readFile(pedidos[req.originalUrl], function(err, data){
+            console.log(pedidos[req.originalUrl], typeof pedidos[req.originalUrl]);
+            if(err) {
+                res.json({
+                    message: err,
+                    success: false
+                })
+                return;
+            }
             res.json({
-                message: err,
-                success: false
+                data: JSON.parse(data),
+                success: true
             })
-            return;
-        }
-        res.json({
-            data: JSON.parse(data),
-            success: true
-        })
-    });
+        });
+    }
 });
+
+// app.post("/creararchivo", (req, res) => {
+//     var fechaActual = actualDate();
+//     console.log(fechaActual);
+//     fs.writeFile("./compras/" + fechaActual, "Hey there!", function(err) {
+//         if(err) {
+//             return console.log(err);
+//         }
+//         console.log("The file was saved!");
+//         console.log(req.body);
+//         console.log(JSON.stringify(req.body));
+//         res.json({
+//             success: true
+//         })
+//     });
+// });
 
 app.post("/creararchivo", (req, res) => {
     var fechaActual = actualDate();
+    let lastringify = JSON.stringify(req.body.data);
     console.log(fechaActual);
-    fs.writeFile("./compras/" + fechaActual, "Hey there!", function(err) {
+    console.log(lastringify);
+    fs.writeFile("./compras/" + fechaActual, "Hey there! " + lastringify, function(err) {
         if(err) {
             return console.log(err);
         }
         console.log("The file was saved!");
+        console.log(typeof lastringify, lastringify);
         res.json({
             success: true
         })
