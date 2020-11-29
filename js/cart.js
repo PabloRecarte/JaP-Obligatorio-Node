@@ -88,8 +88,6 @@ function actualizarSubtotales(){
         costoEnvioELEM.innerHTML = "--";
         totalELEM.innerHTML = "--";
     }
-
-    resumenCompra();
 }
 
 // agrega eventos para actualizar en variaciones de cantidad y costo de envio
@@ -231,7 +229,6 @@ function comprarValidacion(){
         }
     }
     alert("Compra realizada, ¡muchas gracias!");
-    console.log("va a hacer fetch de creararchivo")
     return fetch(CREAR_ARCHIVO, {
         method: 'POST',
         headers: {
@@ -247,12 +244,9 @@ function comprarValidacion(){
         })
     })
     .then(response => {
-        console.log("aca en la response")
         if (response.ok) {
-            console.log("aca en la response todo ok")
           return;
         }else{
-            console.log("aca en la response todo mal")
           throw Error(response.statusText);
         }
       });
@@ -280,15 +274,55 @@ function resumenCompra(){
     let subtotalTotal = document.getElementById("subtotal").textContent;
     let costoenvioTotal = document.getElementById("costoEnvio").textContent;
     let totalTotal = document.getElementById("total").textContent;
+
+    let metodoEnvio = document.getElementById("metodoEnvio").value;
+    let infoEnvio = " ";
+    if (metodoEnvio == "15"){
+        infoEnvio += "(Premium, 15%)";
+    } else if (metodoEnvio == "7"){
+        infoEnvio += "(Express, 7%)";
+    } else {
+        infoEnvio += "(Standard, 5%)"
+    }
     
-    resumen.push("----------: ");
+    resumen.push("----------");
     resumen.push("");
     resumen.push("Resumen compra: ");
     resumen.push("");
     resumen.push("Unidades: " + unidadesTotal);
     resumen.push("Subtotal: UYU " + subtotalTotal);
-    resumen.push("Costo Envio: UYU " + costoenvioTotal);
+    resumen.push("Costo Envio: UYU " + costoenvioTotal + infoEnvio);
     resumen.push("Total: UYU " + totalTotal);
+    resumen.push("");
+
+    let calle = document.getElementById("calle").value;
+    let nro = document.getElementById("numeropuerta").value;
+    let esquina = document.getElementById("esquina").value;
+    let pais = document.getElementById("pais").value;
+
+    resumen.push("----------");
+    resumen.push("");
+    resumen.push("Envío: ");
+    resumen.push("");
+    resumen.push("Dirección: " + calle + ", " + nro);
+    resumen.push("Esquina: " + esquina);
+    resumen.push("País: " + pais);
+    resumen.push("");
+
+    let esTarjeta = document.getElementById("tarjeta").checked;
+
+    resumen.push("----------");
+    resumen.push("");
+    resumen.push("Pago: ");
+    resumen.push("");
+    if(esTarjeta) {
+        let nroTarjeta = document.getElementById("selectorTarjeta").value;
+        resumen.push("Nº de tarjeta: " + nroTarjeta);
+    } else {
+        resumen.push("Transferencia bancaria a:");
+        resumen.push("eMercado JAP 2020");
+        resumen.push("1111-2222-3333-4444");
+    }
 
     return resumen
 }

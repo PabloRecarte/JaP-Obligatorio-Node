@@ -20,7 +20,6 @@ var hideSpinner = function(){
 var getJSONData = function(url){
     var result = {};
     showSpinner();
-    console.log("llega hasta aqui " + url);
     return fetch(url)
     .then(response => {
       if (response.ok) {

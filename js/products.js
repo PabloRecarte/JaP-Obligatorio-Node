@@ -129,12 +129,7 @@ function filterProductsWords(){
 
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCTS_URL).then(function(resultObj){
-        console.log("status:")
-        console.log(resultObj.status)
-        console.log("resultObj = " );
-        console.log(resultObj);
         if (resultObj.status === "ok"){
-            console.log("resultObj.data = " + resultObj.data);
             sortAndShowProducts(ORDER_ASC_BY_PRICE, resultObj.data.data);
         }
     });
